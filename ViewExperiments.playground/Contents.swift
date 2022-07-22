@@ -13,16 +13,17 @@ class MyViewController : UIViewController {
     self.view = getRootView()
     let redView = getRedView()
     let greenView = getGreenView()
-    
     let whiteView = getWhiteView()
+    let pinkView = getPinkView()
     
     set(view: greenView, toCenterOfView: redView)
-    
-    set(view: whiteView, toCenterOfView: redView)
+    // позиционируем белое представление с помощью свойства center
+    whiteView.center = greenView.center
     
     self.view.addSubview(redView)
     redView.addSubview(greenView)
     redView.addSubview(whiteView)
+    self.view.addSubview(pinkView)
   }
   
   // создание корневого представления
@@ -55,6 +56,36 @@ class MyViewController : UIViewController {
     return view
   }
   
+  private func getPinkView() -> UIView {
+    let viewFrame = CGRect(x: 50, y: 300, width: 100, height: 100)
+    let view = UIView(frame: viewFrame)
+    view.backgroundColor = .systemPink
+    
+    view.layer.borderWidth = 5
+    view.layer.borderColor = UIColor.yellow.cgColor
+    view.layer.cornerRadius = 10
+    view.layer.shadowOpacity = 0.95
+    view.layer.shadowRadius = 20
+    view.layer.shadowOffset = CGSize(width: 10, height: 20)
+    view.layer.shadowColor = UIColor.white.cgColor
+    view.layer.opacity = 0.7
+    
+    // создание дочернего слоя
+    let layer = CALayer()
+    layer.backgroundColor = UIColor.black.cgColor
+    layer.frame = CGRect(x: 10, y: 10, width: 20, height: 20)
+    layer.cornerRadius = 10
+    view.layer.addSublayer(layer)
+    
+    // вывод на консоль размеров представления
+    print(view.frame)
+    // поворот представления
+    view.transform = CGAffineTransform(rotationAngle: .pi/6)
+    // вывод на консоль размеров представления
+    print(view.frame)
+    
+    return view
+  }
   private func set(view moveView: UIView, toCenterOfView baseView: UIView) {
     // размеры вложенного представления
     let moveViewWidth = moveView.frame.width
