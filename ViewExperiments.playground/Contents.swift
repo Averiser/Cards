@@ -16,6 +16,9 @@ class MyViewController : UIViewController {
     let whiteView = getWhiteView()
     let pinkView = getPinkView()
     
+    // поворот красного представления
+    redView.transform = CGAffineTransform(rotationAngle: .pi/3)
+    
     set(view: greenView, toCenterOfView: redView)
     // позиционируем белое представление с помощью свойства center
     whiteView.center = greenView.center
@@ -86,26 +89,27 @@ class MyViewController : UIViewController {
     
 //    view.transform = CGAffineTransform(scaleX: 1.5, y: 0.7)
 //    view.transform = CGAffineTransform(translationX: 100, y: 300)
-    view.transform = CGAffineTransform(rotationAngle: .pi/3).scaledBy(x: 2, y: 0.8).translatedBy(x: 50, y: 50)
-    view.transform = CGAffineTransform.identity
-    view.transform = CGAffineTransform(rotationAngle: .pi/4).inverted() 
+//    view.transform = CGAffineTransform(rotationAngle: .pi/3).scaledBy(x: 2, y: 0.8).translatedBy(x: 50, y: 50)
+//    view.transform = CGAffineTransform.identity
+//    view.transform = CGAffineTransform(rotationAngle: .pi/4).inverted()
     
     return view
   }
   private func set(view moveView: UIView, toCenterOfView baseView: UIView) {
     // размеры вложенного представления
-    let moveViewWidth = moveView.frame.width
-    let moveViewHeight = moveView.frame.height
-    
-    // размеры родительского представления
-    let baseViewWidth = baseView.frame.width
-    let baseViewHeight = baseView.frame.height
+//    let moveViewWidth = moveView.frame.width
+//    let moveViewHeight = moveView.frame.height
+//
+//    // размеры родительского представления
+//    let baseViewWidth = baseView.bounds.width
+//    let baseViewHeight = baseView.bounds.height
     
     // вычисление и изменение координат
-    let newXCoordinate = (baseViewWidth - moveViewWidth) / 2
-    let newYCoordinate = (baseViewHeight - moveViewHeight) / 2
-    moveView.frame.origin = CGPoint(x: newXCoordinate, y: newYCoordinate)
-  }
+//    let newXCoordinate = (baseViewWidth - moveViewWidth) / 2
+//    let newYCoordinate = (baseViewHeight - moveViewHeight) / 2
+//    moveView.frame.origin = CGPoint(x: newXCoordinate, y: newYCoordinate)
+    moveView.center = CGPoint(x: baseView.bounds.midX, y: baseView.bounds.midY)
+  } 
 }
 // Present the view controller in the Live View window
 PlaygroundPage.current.liveView = MyViewController()
