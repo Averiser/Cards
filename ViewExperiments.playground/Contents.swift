@@ -109,7 +109,7 @@ class MyViewController : UIViewController {
 //    let newYCoordinate = (baseViewHeight - moveViewHeight) / 2
 //    moveView.frame.origin = CGPoint(x: newXCoordinate, y: newYCoordinate)
     moveView.center = CGPoint(x: baseView.bounds.midX, y: baseView.bounds.midY)
-  } 
+  }
 }
 // Present the view controller in the Live View window
 PlaygroundPage.current.liveView = MyViewController()

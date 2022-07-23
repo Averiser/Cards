@@ -25,6 +25,7 @@
 		E423D36B288863720014DEE0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E423D36D288863720014DEE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E423D373288863B30014DEE0 /* ViewExperiments.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = ViewExperiments.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		E423D374288B76790014DEE0 /* BezierExperiments.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = BezierExperiments.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +42,7 @@
 		E423D353288863700014DEE0 = {
 			isa = PBXGroup;
 			children = (
+				E423D374288B76790014DEE0 /* BezierExperiments.playground */,
 				E423D373288863B30014DEE0 /* ViewExperiments.playground */,
 				E423D35E288863710014DEE0 /* Cards */,
 				E423D35D288863710014DEE0 /* Products */,
