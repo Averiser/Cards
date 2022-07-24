@@ -84,6 +84,38 @@ class FillShape: CAShapeLayer, ShapeLayerProtocol {
   }
 }
 
+class BackSideCircle: CAShapeLayer, ShapeLayerProtocol {
+  required init(size: CGSize, fillColor: CGColor) {
+    super.init()
+    
+    let path = UIBezierPath()
+    
+    // draw 15 circles
+    for _ in 1...15 {
+      // координаты центра очередного круга
+      let randomX = Int.random(in: 0...Int(size.width))
+      let randomY = Int.random(in: 0...Int(size.height))
+      let center = CGPoint(x: randomX, y: randomY)
+      // смещаем указатель к центру круга
+      path.move(to: center)
+      // определяем случайный радиус
+      let radius = Int.random(in: 5...15)
+      // draw a circle
+      path.addArc(withCenter: center, radius: CGFloat(radius), startAngle: 0, endAngle: .pi*2, clockwise: true)
+    }
+    // определяем случайный радиус
+    self.path = path.cgPath
+    self.strokeColor = fillColor
+    self.fillColor = fillColor
+    self.lineWidth = 1
+    
+  }
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+  
+}
+
 class MyViewController : UIViewController {
     override func loadView() {
         let view = UIView()
@@ -95,6 +127,7 @@ class MyViewController : UIViewController {
       view.layer.addSublayer(SquareShape(size: CGSize(width: 200, height: 150), fillColor: UIColor.gray.cgColor))
       view.layer.addSublayer(CrossShape(size: CGSize(width: 200, height: 150), fillColor: UIColor.green.cgColor))
       view.layer.addSublayer(FillShape(size: CGSize(width: 200, height: 150), fillColor: UIColor.purple.cgColor ))
+      view.layer.addSublayer(BackSideCircle(size: CGSize(width: 200, height: 150), fillColor: UIColor.gray.cgColor))
     }
 }
 // Present the view controller in the Live View window
