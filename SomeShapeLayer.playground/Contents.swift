@@ -113,7 +113,36 @@ class BackSideCircle: CAShapeLayer, ShapeLayerProtocol {
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
-  
+}
+
+class BackSideLine: CAShapeLayer, ShapeLayerProtocol {
+  required init(size: CGSize, fillColor: CGColor) {
+    super.init()
+    
+    let path = UIBezierPath()
+    
+    // draw 15 lines
+    for _ in 1...15 {
+      // координаты начала очередной линии
+      let randomXStart = Int.random(in: 0...Int(size.width))
+      let randomYStart = Int.random(in: 0...Int(size.height))
+      // координаты конца очередной линии
+      let randomXEnd = Int.random(in: 0...Int(size.width))
+      let randomYEnd = Int.random(in: 0...Int(size.height))
+      // смещаем указатель к началу линии
+      path.move(to: CGPoint(x: randomXStart, y: randomYStart))
+      path.addLine(to: CGPoint(x: randomXEnd, y: randomYEnd))
+      
+      self.path = path.cgPath
+      self.strokeColor = fillColor
+      self.fillColor = fillColor
+      lineWidth = 3
+      lineCap = .round
+    }
+  }
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
 }
 
 class MyViewController : UIViewController {
@@ -128,6 +157,7 @@ class MyViewController : UIViewController {
       view.layer.addSublayer(CrossShape(size: CGSize(width: 200, height: 150), fillColor: UIColor.green.cgColor))
       view.layer.addSublayer(FillShape(size: CGSize(width: 200, height: 150), fillColor: UIColor.purple.cgColor ))
       view.layer.addSublayer(BackSideCircle(size: CGSize(width: 200, height: 150), fillColor: UIColor.gray.cgColor))
+      view.layer.addSublayer(BackSideLine(size: CGSize(width: 200, height: 150), fillColor: UIColor.green.cgColor))
     }
 }
 // Present the view controller in the Live View window
