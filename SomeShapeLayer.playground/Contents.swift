@@ -7,6 +7,12 @@ protocol ShapeLayerProtocol: CAShapeLayer {
   init(size: CGSize, fillColor: CGColor)
 }
 
+protocol FlippableView: UIView {
+  var isFlipped: Bool { get set }
+  var flipCompletionHandler: ((FlippableView) -> Void)? { get set }
+  func flip()
+}
+
 class CircleShape: CAShapeLayer, ShapeLayerProtocol {
   required init(size: CGSize, fillColor: CGColor) {
     super.init()
@@ -145,6 +151,116 @@ class BackSideLine: CAShapeLayer, ShapeLayerProtocol {
   }
 }
 
+class CardView<ShapeType: ShapeLayerProtocol>: UIView, FlippableView {
+  
+  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    print("touchesBegan Card")
+  }
+  
+  override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+    print("touchesMoved Card")
+  }
+  
+  override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+    print("touchesEnded Card")    
+  }
+  
+  var isFlipped: Bool = false {
+    didSet {
+      self.setNeedsDisplay()
+    }
+  }
+  
+  var flipCompletionHandler: ((FlippableView) -> Void)?
+  
+  func flip() {
+    <#code#>
+  }
+  
+  // card color
+  var color:  UIColor!
+  
+  var cornerRadius = 20
+  
+  init(frame: CGRect, color: UIColor) {
+    super.init(frame: frame)
+    self.color = color
+    setupBorders()
+  }
+  
+  override func draw(_ rect: CGRect) {
+    // удаляем добавленные ранее дочерние представления
+    backSideView.removeFromSuperview()
+    frontSideView.removeFromSuperview()
+    
+    // добавляем новые представления
+    if isFlipped {
+      self.addSubview(backSideView)
+      self.addSubview(frontSideView)
+    } else {
+      self.addSubview(frontSideView)
+      self.addSubview(backSideView)
+    }
+  }
+  
+  private func setupBorders() {
+    clipsToBounds = true
+    layer.cornerRadius = CGFloat(cornerRadius)
+    layer.borderWidth = 2
+    layer.borderColor = UIColor.black.cgColor
+  }
+    
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+  
+  // внутренний отступ представления
+  private let margin: Int = 10
+  
+  // представление с лицевой стороной карты
+  lazy var frontSideView: UIView = getFrontSideView()
+  // представление с обратной стороной карты
+  lazy var backSideView: UIView = self.getBackSideView()
+  
+  // возвращает представление для лицевой стороны карточки
+  private func getFrontSideView() -> UIView {
+    let view = UIView(frame: bounds)
+    view.backgroundColor = .white
+    
+    let shapeView = UIView(frame: CGRect(x: margin, y: margin, width: Int(bounds.width)-margin*2, height: Int(bounds.height)-margin*2))
+    view.addSubview(shapeView)
+    
+    // создание слоя с фигурой
+    let shapeLayer = ShapeType(size: shapeView.frame.size, fillColor: color.cgColor)
+    shapeView.layer.addSublayer(shapeLayer)
+    
+    return view
+  }
+  
+  // возвращает представление для обратной стороны карточки
+  private func getBackSideView() -> UIView {
+    let view = UIView(frame: bounds)
+    view.backgroundColor = .white
+    
+    //выбор случайного узора для рубашки
+    switch ["circle", "line"].randomElement()! {
+    case "circle":
+      let layer = BackSideCircle(size: bounds.size, fillColor: UIColor.black.cgColor)
+      view.layer.addSublayer(layer)
+    case "line":
+      let layer = BackSideLine(size: bounds.size, fillColor: UIColor.black.cgColor)
+      view.layer.addSublayer(layer)
+    default:
+      break
+    }
+    return view
+  }
+  
+}
+
+
+
+
 class MyViewController : UIViewController {
     override func loadView() {
         let view = UIView()
@@ -152,12 +268,21 @@ class MyViewController : UIViewController {
       self.view = view
       
       // circle
-      view.layer.addSublayer(CircleShape(size: CGSize(width: 200, height: 150), fillColor: UIColor.gray.cgColor))
+//      view.layer.addSublayer(CircleShape(size: CGSize(width: 200, height: 150), fillColor: UIColor.gray.cgColor))
       view.layer.addSublayer(SquareShape(size: CGSize(width: 200, height: 150), fillColor: UIColor.gray.cgColor))
-      view.layer.addSublayer(CrossShape(size: CGSize(width: 200, height: 150), fillColor: UIColor.green.cgColor))
-      view.layer.addSublayer(FillShape(size: CGSize(width: 200, height: 150), fillColor: UIColor.purple.cgColor ))
-      view.layer.addSublayer(BackSideCircle(size: CGSize(width: 200, height: 150), fillColor: UIColor.gray.cgColor))
-      view.layer.addSublayer(BackSideLine(size: CGSize(width: 200, height: 150), fillColor: UIColor.green.cgColor))
+//      view.layer.addSublayer(CrossShape(size: CGSize(width: 200, height: 150), fillColor: UIColor.green.cgColor))
+//      view.layer.addSublayer(FillShape(size: CGSize(width: 200, height: 150), fillColor: UIColor.purple.cgColor ))
+//      view.layer.addSublayer(BackSideCircle(size: CGSize(width: 200, height: 150), fillColor: UIColor.gray.cgColor))
+//      view.layer.addSublayer(BackSideLine(size: CGSize(width: 200, height: 150), fillColor: UIColor.green.cgColor))
+      
+      // игральная карточка рубашкой вверх
+      let firstCardView = CardView<CircleShape>(frame: CGRect(x: 0, y: 0, width: 120, height: 150), color: .red)
+      self.view.addSubview(firstCardView)
+      
+      // игральная карточка лицевой стороной вверх
+      let secondCardView = CardView<CircleShape>(frame: CGRect(x: 200, y: 0, width: 120, height: 150), color: .red)
+      self.view.addSubview(secondCardView)
+      secondCardView.isFlipped = true
     }
 }
 // Present the view controller in the Live View window
