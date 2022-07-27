@@ -17,6 +17,7 @@
 		E423D37F288F14A70014DEE0 /* BoardGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E423D37E288F14A70014DEE0 /* BoardGameController.swift */; };
 		E423D382288F1CB30014DEE0 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = E423D381288F1CB30014DEE0 /* Card.swift */; };
 		E423D384288F21190014DEE0 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = E423D383288F21190014DEE0 /* Game.swift */; };
+		E4DC4215289144D10025C3EE /* CardViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DC4214289144D10025C3EE /* CardViewFactory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		E423D37E288F14A70014DEE0 /* BoardGameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardGameController.swift; sourceTree = "<group>"; };
 		E423D381288F1CB30014DEE0 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		E423D383288F21190014DEE0 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
+		E4DC4214289144D10025C3EE /* CardViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewFactory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,6 +50,7 @@
 		E423D353288863700014DEE0 = {
 			isa = PBXGroup;
 			children = (
+				E4DC4213289144AD0025C3EE /* Helpers */,
 				E423D380288F14E20014DEE0 /* Model */,
 				E423D37D288F143F0014DEE0 /* Controller */,
 				E423D377288F11080014DEE0 /* View */,
@@ -109,6 +112,14 @@
 				E423D383288F21190014DEE0 /* Game.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		E4DC4213289144AD0025C3EE /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				E4DC4214289144D10025C3EE /* CardViewFactory.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -187,6 +198,7 @@
 				E423D384288F21190014DEE0 /* Game.swift in Sources */,
 				E423D37B288F114C0014DEE0 /* Cards.swift in Sources */,
 				E423D360288863710014DEE0 /* AppDelegate.swift in Sources */,
+				E4DC4215289144D10025C3EE /* CardViewFactory.swift in Sources */,
 				E423D362288863710014DEE0 /* SceneDelegate.swift in Sources */,
 				E423D379288F112D0014DEE0 /* Shapes.swift in Sources */,
 			);
