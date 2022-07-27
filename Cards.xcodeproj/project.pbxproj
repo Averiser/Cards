@@ -15,6 +15,8 @@
 		E423D379288F112D0014DEE0 /* Shapes.swift in Sources */ = {isa = PBXBuildFile; fileRef = E423D378288F112D0014DEE0 /* Shapes.swift */; };
 		E423D37B288F114C0014DEE0 /* Cards.swift in Sources */ = {isa = PBXBuildFile; fileRef = E423D37A288F114C0014DEE0 /* Cards.swift */; };
 		E423D37F288F14A70014DEE0 /* BoardGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E423D37E288F14A70014DEE0 /* BoardGameController.swift */; };
+		E423D382288F1CB30014DEE0 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = E423D381288F1CB30014DEE0 /* Card.swift */; };
+		E423D384288F21190014DEE0 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = E423D383288F21190014DEE0 /* Game.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		E423D378288F112D0014DEE0 /* Shapes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shapes.swift; sourceTree = "<group>"; };
 		E423D37A288F114C0014DEE0 /* Cards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cards.swift; sourceTree = "<group>"; };
 		E423D37E288F14A70014DEE0 /* BoardGameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardGameController.swift; sourceTree = "<group>"; };
+		E423D381288F1CB30014DEE0 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		E423D383288F21190014DEE0 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +105,8 @@
 		E423D380288F14E20014DEE0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E423D381288F1CB30014DEE0 /* Card.swift */,
+				E423D383288F21190014DEE0 /* Game.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -177,6 +183,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				E423D37F288F14A70014DEE0 /* BoardGameController.swift in Sources */,
+				E423D382288F1CB30014DEE0 /* Card.swift in Sources */,
+				E423D384288F21190014DEE0 /* Game.swift in Sources */,
 				E423D37B288F114C0014DEE0 /* Cards.swift in Sources */,
 				E423D360288863710014DEE0 /* AppDelegate.swift in Sources */,
 				E423D362288863710014DEE0 /* SceneDelegate.swift in Sources */,
